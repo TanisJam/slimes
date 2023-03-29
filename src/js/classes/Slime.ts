@@ -13,38 +13,6 @@ export class Slime extends Entity {
     ctx.arc(this.position.x, this.position.y, this.size.x / 2, 0, 2 * Math.PI);
     ctx.fill();
   }
-
-  collide(other: Entity) {
-    const dx = this.position.x - other.position.x;
-    const dy = this.position.y - other.position.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    const sumRadius = this.size.x / 2 + other.size.x / 2;
-    const collide = distance < sumRadius;
-    const vector = {
-      x: this.position.x - other.position.x,
-      y: this.position.y - other.position.y,
-    };
-    return { collide, vector };
-  }
-
-  update() {
-    this.position.x += this.velocity.x;
-    this.position.y += this.velocity.y;
-
-    // if position is outside of the canvas make it bounce
-    if (
-      this.position.x - this.size.x / 2 <= 0 ||
-      this.position.x + this.size.x / 2 >= dimensions.width
-    ) {
-      this.velocity.x = -this.velocity.x;
-    }
-    if (
-      this.position.y - this.size.y / 2 <= 0 ||
-      this.position.y + this.size.y / 2 >= dimensions.height
-    ) {
-      this.velocity.y = -this.velocity.y;
-    }
-  }
 }
 
 export const createSlimes = (num: number) => {

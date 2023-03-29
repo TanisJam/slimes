@@ -13,6 +13,9 @@ The game was made just to practice javascript with classes and objects.
     - vector velocity
     - skin
     - mass
+  - Methods:
+    - collide
+    - update
 
 - Slime extends Entity
 
@@ -21,14 +24,13 @@ The game was made just to practice javascript with classes and objects.
     - hunger rate
     - hunger threshold
   - Methods:
+    - draw
     - eat
     - reproduce
     - die
     - wander
     - find food
     - move
-    - update
-    - draw
 
 - Food extends Entity
 
