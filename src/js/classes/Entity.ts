@@ -1,5 +1,5 @@
-import { dimensions } from "../constants";
-import { Vector } from "../../types";
+import { dimensions } from "../../utils/constants";
+import { Vector } from "../../utils/Vector";
 
 export class Entity {
   mass: number;
@@ -58,18 +58,15 @@ export class Entity {
       }
 
       // update this.velocity
-      this.velocity.x = vx0Final;
-      this.velocity.y = vy0Final;
+      this.velocity = new Vector(vx0Final, vy0Final);
 
       // update other.velocity
-      other.velocity.x = vx1Final;
-      other.velocity.y = vy1Final;
+      other.velocity = new Vector(vx1Final, vy1Final);
     }
   }
 
   update() {
-    this.position.x += this.velocity.x;
-    this.position.y += this.velocity.y;
+    this.position = this.position.add(this.velocity);
 
     // if position is outside of the canvas make it bounce
     if (

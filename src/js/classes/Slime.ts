@@ -1,6 +1,6 @@
 import { Entity } from "./Entity";
-import { Vector } from "../../types";
-import { dimensions } from "../constants";
+import { Vector } from "../../utils/Vector";
+import { dimensions } from "../../utils/constants";
 
 export class Slime extends Entity {
   constructor(position: Vector, size: Vector, velocity: Vector, color: string) {
@@ -18,15 +18,16 @@ export class Slime extends Entity {
 export const createSlimes = (num: number) => {
   const slimes: Slime[] = [];
   for (let i = 0; i < num; i++) {
-    const size = Math.random() * 50 + 10;
-    const x = Math.random() * (dimensions.width - size) + size / 2;
-    const y = Math.random() * (dimensions.height - size) + size / 2;
     const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
-    const velocity = {
-      x: Math.random() * 2 - 1,
-      y: Math.random() * 2 - 1,
-    };
-    slimes.push(new Slime({ x, y }, { x: size, y: size }, velocity, color));
+    const radius = Math.random() * 50 + 10;
+    const size = new Vector(radius, radius);
+    const pX = Math.random() * (dimensions.width - radius) + radius / 2;
+    const pY = Math.random() * (dimensions.height - radius) + radius / 2;
+    const vX = Math.random() * 2 - 1;
+    const vY = Math.random() * 2 - 1;
+    const position = new Vector(pX, pY);
+    const velocity = new Vector(vX, vY);
+    slimes.push(new Slime(position, size, velocity, color));
   }
   return slimes;
 };

@@ -1,6 +1,6 @@
 import "./style.css";
 import { Game } from "./js/classes/Game";
-import { dimensions } from "./js/constants";
+import { dimensions } from "./utils/constants";
 
 window.onload = () => {
   const game = new Game();
